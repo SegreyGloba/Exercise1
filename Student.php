@@ -52,9 +52,11 @@ class Student
         $gpa = $this->gpa + log($time);
         $this->gpa = $gpa > self::MAX_GPA ? self::MAX_GPA : $gpa;
     }
+
+    public function __set($name, $value)
+    {
+        if ('gpa' === $name) {
+            $this->gpa = $value;
+        }
+    }
 }
-
-$student = new Student('Sergey', 'Globa', 'male', 'senior', '2');
-
-$student->studyTime(2);
-$student->showMyself();
